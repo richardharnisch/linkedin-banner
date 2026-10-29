@@ -22,7 +22,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw, PngImagePlugin
 
 
 HERE = Path(__file__).resolve().parent
@@ -111,22 +111,22 @@ def render_plot() -> None:
 
 
 def render_overlay(source: Path) -> None:
-    """Plot the final banner function over the exact source photograph."""
+    """Draw only the photo crop and fitted line, without margins or labels."""
     with Image.open(source) as original:
         photo = original.convert("RGB").resize((1280,850), Image.Resampling.LANCZOS)
+    crop = photo.crop((0,210,1280,570))
     x = np.linspace(0,1280,12801)
-    photo_y = MODEL["height_reference_photo_y"] - skyline_height(x)
-    fig,ax = plt.subplots(figsize=(16,5.7),facecolor="#fbf9f5")
-    ax.imshow(photo,extent=(0,1280,850,0))
-    ax.plot(x,photo_y,color="#55ffe5",lw=1)
-    ax.set(xlim=(0,1280),ylim=(570,210),aspect="equal")
-    ax.axis("off")
-    fig.subplots_adjust(.025,.08,.975,.9)
-    fig.text(.025,.94,"PHOTO + FINAL BANNER FUNCTION (18 SMOOTH TERMS)",size=11,color="#172831")
-    fig.text(.025,.035,CREDIT,size=8,color="#60717a")
-    fig.savefig(HERE/"dresden-fit-overlay.png",dpi=140,
-                metadata={"Description":f"{CREDIT}; {MODEL['source']}; {MODEL['license']}"})
-    plt.close(fig)
+    photo_y = MODEL["height_reference_photo_y"] - skyline_height(x) - 210
+    # Antialias only the line; leave the underlying photo pixels unchanged.
+    scale = 4
+    mask = Image.new("L",(crop.width*scale,crop.height*scale),0)
+    points = list(zip((x*scale).tolist(),(photo_y*scale).tolist()))
+    ImageDraw.Draw(mask).line(points,fill=255,width=6)
+    mask = mask.resize(crop.size,Image.Resampling.LANCZOS)
+    crop.paste("#55ffe5",(0,0,crop.width,crop.height),mask)
+    metadata = PngImagePlugin.PngInfo()
+    metadata.add_text("Description",f"{CREDIT}; {MODEL['source']}; {MODEL['license']}")
+    crop.save(HERE/"dresden-fit-overlay.png",pnginfo=metadata)
 
 
 def render_tex() -> None:
