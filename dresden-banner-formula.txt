@@ -1,0 +1,13 @@
+Paste each expression into a separate Desmos line:
+
+g(x,u,v,p)=e^{-((x-u)/v)^p}
+f(x)=112-37x/1280+78g(x,-2,81,2)+47g(x,89,12,2)+130g(x,165,56,4)+71g(x,165,21,8)+30g(x,165,3,2)+81g(x,243,11,2)+35g(x,343,46,4)+19g(x,441,159,16)+37g(x,473,24,2)+25g(x,568,34,4)+22g(x,778,121,16)+46g(x,860,9,2)+60g(x,889,3,2)+89g(x,893,20,4)+41g(x,1020,50,16)+37g(x,1039,3,2)+42g(x,1040,13,8)+42g(x,1040,20,8)
+(t,f(t))\{0\le t\le1280\}
+
+The function is analytic on all real x. Plot the photographed part on 0 <= x <= 1280.
+Use equal x/y scales; suggested y range: 0 to 370.
+
+All coefficients in this file are used in the banner and plotted preview.
+Adapted from Michele Vascellari's photo · CC BY-SA 4.0
+https://commons.wikimedia.org/wiki/File:Dresden_skyline.jpg
+https://creativecommons.org/licenses/by-sa/4.0/

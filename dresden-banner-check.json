@@ -1,0 +1,28 @@
+{
+  "smooth_terms": 18,
+  "fitted_values_before_integer_rounding": 56,
+  "fixed_even_powers": [
+    2,
+    4,
+    8,
+    16
+  ],
+  "reference": "dresden-outline.csv: brightness-extracted photo outline with manual spire corrections",
+  "rms_vertical_distance_to_extracted_outline_px": 6.354,
+  "max_vertical_distance_to_extracted_outline_px": 33.166,
+  "landmarks": {
+    "Frauenkirche": {
+      "x": 164.98,
+      "photo_y": 230.66
+    },
+    "Hausmannsturm": {
+      "x": 888.96,
+      "photo_y": 317.72
+    },
+    "Hofkirche": {
+      "x": 1039.0,
+      "photo_y": 326.03
+    }
+  },
+  "note": "Comparison with the extracted, manually corrected outline, not independent ground truth or a recognition test. Small roof ornaments and tree detail are intentionally omitted."
+}

@@ -1,0 +1,32 @@
+{
+  "description": "Banner-sized approximation of the photographed Dresden skyline",
+  "basis": "Each row [A, mu, w, p] contributes A*exp(-((x-mu)/w)^p)",
+  "constant": 112,
+  "linear_change_over_domain": -37,
+  "domain_width": 1280,
+  "height_reference_photo_y": 570,
+  "terms": [
+    [78, -2, 81, 2],
+    [47, 89, 12, 2],
+    [130, 165, 56, 4],
+    [71, 165, 21, 8],
+    [30, 165, 3, 2],
+    [81, 243, 11, 2],
+    [35, 343, 46, 4],
+    [19, 441, 159, 16],
+    [37, 473, 24, 2],
+    [25, 568, 34, 4],
+    [22, 778, 121, 16],
+    [46, 860, 9, 2],
+    [60, 889, 3, 2],
+    [89, 893, 20, 4],
+    [41, 1020, 50, 16],
+    [37, 1039, 3, 2],
+    [42, 1040, 13, 8],
+    [42, 1040, 20, 8]
+  ],
+  "fitting_note": "18-term nonlinear fit to the previous detailed smooth outline; 56 fitted values (18 amplitudes, 18 centers, 18 widths, baseline and slope) rounded to integers. Powers were fixed design choices, not fitted parameters.",
+  "source": "https://commons.wikimedia.org/wiki/File:Dresden_skyline.jpg",
+  "attribution": "Outline adapted from Michele Vascellari's photograph",
+  "license": "https://creativecommons.org/licenses/by-sa/4.0/"
+}
